@@ -1,0 +1,3165 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Scavenger Clan droneboi - basement</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/4181fea588a41af5722e061d3bb18f4d-5AF4B.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Scavenger Clan droneboi</div>
+        <div class="preamble__entry">Warfare / basement</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="948320527875989514" id="message-948320527875989514" title="Message sent: 02-Mar-22 04:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Uhh</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/328b31d169a0a55b94ad143afc999df4-AB20E.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Alpus#9287" data-user-id="789121666604859424" style="color: rgb(7,18,34)">Alpaito</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="948320532309352508" id="message-948320532309352508" title="Message sent: 02-Mar-22 04:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">h</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="948320577310036038" id="message-948320577310036038" title="Message sent: 02-Mar-22 04:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nice</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/cf9219725484f9d2b04bb4bdc572c675-BDEB3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="warboi#0302" data-user-id="758000657444896768" style="color: rgb(228,180,0)">warboi</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="948320577993707651" id="message-948320577993707651" title="Message sent: 02-Mar-22 04:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="liso90#4584">@aspho</span> hahahahaha</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/328b31d169a0a55b94ad143afc999df4-AB20E.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Alpus#9287" data-user-id="789121666604859424" style="color: rgb(7,18,34)">Alpaito</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="948320596796801094" id="message-948320596796801094" title="Message sent: 02-Mar-22 04:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">basement</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="948320621299892225" id="message-948320621299892225" title="Message sent: 02-Mar-22 04:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Oh</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948320761729384520" id="message-948320761729384520" title="Message sent: 02-Mar-22 04:48 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji emoji--large" alt="😑" title="expressionless" src="https://twemoji.maxcdn.com/2/svg/1f611.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="948320817123561493" id="message-948320817123561493" title="Message sent: 02-Mar-22 04:48 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">That’s what you get for believing in silly notions like “human rights”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/328b31d169a0a55b94ad143afc999df4-AB20E.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Alpus#9287" data-user-id="789121666604859424" style="color: rgb(7,18,34)">Alpaito</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="948320946664640523" id="message-948320946664640523" title="Message sent: 02-Mar-22 04:48 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji emoji--large" alt="😅" title="sweat_smile" src="https://twemoji.maxcdn.com/2/svg/1f605.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="948320949294493706" id="message-948320949294493706" title="Message sent: 02-Mar-22 04:48 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Y dont liked the human rights</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="948321046442962994" id="message-948321046442962994" title="Message sent: 02-Mar-22 04:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Human rights” prevent progress and fun</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="948321067276054539" id="message-948321067276054539" title="Message sent: 02-Mar-22 04:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Y just a guy with a blue helmet</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948321184020316181" id="message-948321184020316181" title="Message sent: 02-Mar-22 04:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A cool blue helmet</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948321210381504584" id="message-948321210381504584" title="Message sent: 02-Mar-22 04:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Just this</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="948321422575538187" id="message-948321422575538187" title="Message sent: 02-Mar-22 04:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">If there wasn’t “human rights” then we could commit mass cannibalism and then reduce both world hunger and overpopulation</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="948321501864685569" id="message-948321501864685569" title="Message sent: 02-Mar-22 04:51 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Makes sense</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948321732991778857" id="message-948321732991778857" title="Message sent: 02-Mar-22 04:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji emoji--large" alt="pepe" title="pepe" src="https://cdn.discordapp.com/emojis/941607459586474014.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/cf9219725484f9d2b04bb4bdc572c675-BDEB3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="warboi#0302" data-user-id="758000657444896768" style="color: rgb(228,180,0)">warboi</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="948321837333495908" id="message-948321837333495908" title="Message sent: 02-Mar-22 04:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Maniacal laughter</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948321922633056296" id="message-948321922633056296" title="Message sent: 02-Mar-22 04:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Creg#3608">@Creg worshipper</span> you know that black and white photo you drew once?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948321989137956874" id="message-948321989137956874" title="Message sent: 02-Mar-22 04:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The......most popular one</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="948322003411173476" id="message-948322003411173476" title="Message sent: 02-Mar-22 04:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Let me die in peace!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/cf9219725484f9d2b04bb4bdc572c675-BDEB3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="warboi#0302" data-user-id="758000657444896768" style="color: rgb(228,180,0)">warboi</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="948322073812553738" id="message-948322073812553738" title="Message sent: 02-Mar-22 04:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The other one. <strong>dewit</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="948322078107500564" id="message-948322078107500564" title="Message sent: 02-Mar-22 04:53 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0734-8B6EC.png">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0734-8B6EC.png" alt="Image attachment" title="Image: IMG_0734.png (99.37 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/cf9219725484f9d2b04bb4bdc572c675-BDEB3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="warboi#0302" data-user-id="758000657444896768" style="color: rgb(228,180,0)">warboi</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="948322151218442310" id="message-948322151218442310" title="Message sent: 02-Mar-22 04:53 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/tenor-59F5E.gif">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/tenor-59F5E.gif" alt="Image attachment" title="Image: tenor.gif (55.36 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948322184030453770" id="message-948322184030453770" title="Message sent: 02-Mar-22 04:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Post it more</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948322206268653630" id="message-948322206268653630" title="Message sent: 02-Mar-22 04:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Make aspho suffer</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="948322218419576843" id="message-948322218419576843" title="Message sent: 02-Mar-22 04:53 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0734-84223.png">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0734-84223.png" alt="Image attachment" title="Image: IMG_0734.png (94.47 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="948322225314988112" id="message-948322225314988112" title="Message sent: 02-Mar-22 04:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Noooo</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/cf9219725484f9d2b04bb4bdc572c675-BDEB3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="warboi#0302" data-user-id="758000657444896768" style="color: rgb(228,180,0)">warboi</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="948322227613495437" id="message-948322227613495437" title="Message sent: 02-Mar-22 04:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="liso90#4584">@aspho</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948322228951457832" id="message-948322228951457832" title="Message sent: 02-Mar-22 04:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="liso90#4584">@aspho</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948322233183506522" id="message-948322233183506522" title="Message sent: 02-Mar-22 04:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="liso90#4584">@aspho</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948322238019563630" id="message-948322238019563630" title="Message sent: 02-Mar-22 04:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="liso90#4584">@aspho</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948322253781741639" id="message-948322253781741639" title="Message sent: 02-Mar-22 04:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Exist</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948322312736886855" id="message-948322312736886855" title="Message sent: 02-Mar-22 04:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hitler hentai go</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="948322384237183026" id="message-948322384237183026" title="Message sent: 02-Mar-22 04:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">NOOOOOOOO</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="948322546321875025" id="message-948322546321875025" title="Message sent: 02-Mar-22 04:55 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0736-5D253.png">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0736-5D253.png" alt="Image attachment" title="Image: IMG_0736.png (121.81 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948322601292402689" id="message-948322601292402689" title="Message sent: 02-Mar-22 04:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="liso90#4584">@aspho</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948322611295813694" id="message-948322611295813694" title="Message sent: 02-Mar-22 04:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="liso90#4584">@aspho</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="948322687992864769" id="message-948322687992864769" title="Message sent: 02-Mar-22 04:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">What now?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="948322734184734750" id="message-948322734184734750" title="Message sent: 02-Mar-22 04:55 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0736-B3C7A.png">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0736-B3C7A.png" alt="Image attachment" title="Image: IMG_0736.png (116.99 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="948322776320708619" id="message-948322776320708619" title="Message sent: 02-Mar-22 04:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">AAAAAAAAAAA</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="948322810449788968" id="message-948322810449788968" title="Message sent: 02-Mar-22 04:56 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0163-F99C2.jpg">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0163-F99C2.jpg" alt="Image attachment" title="Image: IMG_0163.jpg (86.05 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/cf9219725484f9d2b04bb4bdc572c675-BDEB3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="warboi#0302" data-user-id="758000657444896768" style="color: rgb(228,180,0)">warboi</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="948322863474167858" id="message-948322863474167858" title="Message sent: 02-Mar-22 04:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Send in the troops</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="948322900555997264" id="message-948322900555997264" title="Message sent: 02-Mar-22 04:56 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0161-92902.jpg">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0161-92902.jpg" alt="Image attachment" title="Image: IMG_0161.jpg (49.23 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948322914070048818" id="message-948322914070048818" title="Message sent: 02-Mar-22 04:56 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0163-581FC.jpg">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0163-581FC.jpg" alt="Image attachment" title="Image: IMG_0163.jpg (86.05 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948322922542563378" id="message-948322922542563378" title="Message sent: 02-Mar-22 04:56 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0159-4D524.png">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0159-4D524.png" alt="Image attachment" title="Image: IMG_0159.png (220.3 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948322935767199816" id="message-948322935767199816" title="Message sent: 02-Mar-22 04:56 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0155-6F46A.png">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0155-6F46A.png" alt="Image attachment" title="Image: IMG_0155.png (53.15 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948322979446652970" id="message-948322979446652970" title="Message sent: 02-Mar-22 04:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I’m sending in tanks</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0687-7D7ED.png">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0687-7D7ED.png" alt="Image attachment" title="Image: IMG_0687.png (402.08 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948323008144101436" id="message-948323008144101436" title="Message sent: 02-Mar-22 04:57 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0687-A9F2F.png">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0687-A9F2F.png" alt="Image attachment" title="Image: IMG_0687.png (388.19 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/cf9219725484f9d2b04bb4bdc572c675-BDEB3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="warboi#0302" data-user-id="758000657444896768" style="color: rgb(228,180,0)">warboi</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="948323016511729694" id="message-948323016511729694" title="Message sent: 02-Mar-22 04:57 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Yes</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="948323040264089640" id="message-948323040264089640" title="Message sent: 02-Mar-22 04:57 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0687-10163.png">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0687-10163.png" alt="Image attachment" title="Image: IMG_0687.png (388.19 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948323163807285309" id="message-948323163807285309" title="Message sent: 02-Mar-22 04:57 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Soviet Gandalf has been deployed</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0162-500C4.jpg">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0162-500C4.jpg" alt="Image attachment" title="Image: IMG_0162.jpg (6.14 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 04:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="948323559455993966" id="message-948323559455993966" title="Message sent: 02-Mar-22 04:59 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/20220301_090346-580D4.jpg">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/20220301_090346-580D4.jpg" alt="Image attachment" title="Image: 20220301_090346.jpg (239.37 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948323572827447336" id="message-948323572827447336" title="Message sent: 02-Mar-22 04:59 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Why</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948323598626586635" id="message-948323598626586635" title="Message sent: 02-Mar-22 04:59 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Just why?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="liso90#4584" style="color: rgb(215,52,42)">aspho</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;948323559455993966&#39;)">
+                            <em>Click to see attachment</em> <span>🖼️</span>
+                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 05:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="948323817225343007" id="message-948323817225343007" title="Message sent: 02-Mar-22 05:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>FILTHY UN PEACEKEEPER</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/cf9219725484f9d2b04bb4bdc572c675-BDEB3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="warboi#0302" data-user-id="758000657444896768" style="color: rgb(228,180,0)">warboi</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 05:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="948323866441289768" id="message-948323866441289768" title="Message sent: 02-Mar-22 05:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Filth!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 05:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="948323886699774002" id="message-948323886699774002" title="Message sent: 02-Mar-22 05:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>DAM BLUE HELMETS</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 05:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="948324125213069322" id="message-948324125213069322" title="Message sent: 02-Mar-22 05:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Its just my helmet</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948324185816563742" id="message-948324185816563742" title="Message sent: 02-Mar-22 05:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">You guys dont like blue?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 05:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="948325444560752721" id="message-948325444560752721" title="Message sent: 02-Mar-22 05:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">You know who else has blue helmets? <strong>THE GODAM UN</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948325514119090226" id="message-948325514119090226" title="Message sent: 02-Mar-22 05:07 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Look at these bastards</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/9F35FF4C-F40D-4B9B-A28E-5DB1A83DF3B3-0EEBA.jpg">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/9F35FF4C-F40D-4B9B-A28E-5DB1A83DF3B3-0EEBA.jpg" alt="Image attachment" title="Image: 9F35FF4C-F40D-4B9B-A28E-5DB1A83DF3B3.jpg (775.81 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 05:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="948325573439143996" id="message-948325573439143996" title="Message sent: 02-Mar-22 05:07 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I dont like them</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 05:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="948325585858478150" id="message-948325585858478150" title="Message sent: 02-Mar-22 05:07 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Protecting innocent people and stupid shit like that</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 05:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="948334594141351986" id="message-948334594141351986" title="Message sent: 02-Mar-22 05:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Warboi?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948334641943822347" id="message-948334641943822347" title="Message sent: 02-Mar-22 05:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">You still there?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 05:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="948335020861448242" id="message-948335020861448242" title="Message sent: 02-Mar-22 05:44 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>im still here</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 05:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="948335132161478736" id="message-948335132161478736" title="Message sent: 02-Mar-22 05:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ugh</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="dark_troll">
+                                <img class="emoji emoji--small" alt="dark_troll" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/941607006404505670-C64B4.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 05:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="948335140348756030" id="message-948335140348756030" title="Message sent: 02-Mar-22 05:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://tenor.com/view/what-emoji-gif-15230276">https://tenor.com/view/what-emoji-gif-15230276</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+
+
+                                    </div>
+
+                                        <div class="chatlog__embed-thumbnail-container">
+                                            <a class="chatlog__embed-thumbnail-link" href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/what-emoji-A03F4.png">
+                                                <img class="chatlog__embed-thumbnail" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/what-emoji-A03F4.png" alt="Thumbnail" loading="lazy">
+                                            </a>
+                                        </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 05:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="948336154065911848" id="message-948336154065911848" title="Message sent: 02-Mar-22 05:49 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/elmo-burning-5B840.gif">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/elmo-burning-5B840.gif" alt="Image attachment" title="Image: elmo-burning.gif (963.82 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 06:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="948340850507800586" id="message-948340850507800586" title="Message sent: 02-Mar-22 06:07 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/crazy-anime-06789.gif">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/crazy-anime-06789.gif" alt="Image attachment" title="Image: crazy-anime.gif (1.38 MB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948341361684414495" id="message-948341361684414495" title="Message sent: 02-Mar-22 06:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="liso90#4584">@aspho</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948341568627163206" id="message-948341568627163206" title="Message sent: 02-Mar-22 06:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">You still there?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948341584607449138" id="message-948341584607449138" title="Message sent: 02-Mar-22 06:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Yes</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948341605612535828" id="message-948341605612535828" title="Message sent: 02-Mar-22 06:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Good</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948341723095007243" id="message-948341723095007243" title="Message sent: 02-Mar-22 06:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Wait</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948341768217317406" id="message-948341768217317406" title="Message sent: 02-Mar-22 06:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">They are not here</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948341905677250602" id="message-948341905677250602" title="Message sent: 02-Mar-22 06:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Y can escape?!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948341934924107876" id="message-948341934924107876" title="Message sent: 02-Mar-22 06:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">RUN</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/cf9219725484f9d2b04bb4bdc572c675-BDEB3.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="warboi#0302" data-user-id="758000657444896768" style="color: rgb(228,180,0)">warboi</span>
+
+
+        <span class="chatlog__timestamp">02-Mar-22 06:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="948347051211640882" id="message-948347051211640882" title="Message sent: 02-Mar-22 06:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">@liso90#4584</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948347116110094366" id="message-948347116110094366" title="Message sent: 02-Mar-22 06:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Creg#3608">@Creg worshipper</span> escapee</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-22 05:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="948690030518468628" id="message-948690030518468628" title="Message sent: 03-Mar-22 05:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Fuck</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-22 05:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="948690051947184220" id="message-948690051947184220" title="Message sent: 03-Mar-22 05:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hehehehehhe</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948690094292869141" id="message-948690094292869141" title="Message sent: 03-Mar-22 05:15 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0718-70E79.png">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0718-70E79.png" alt="Image attachment" title="Image: IMG_0718.png (466.07 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948690116434591857" id="message-948690116434591857" title="Message sent: 03-Mar-22 05:15 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0746-2FA6D.jpg">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0746-2FA6D.jpg" alt="Image attachment" title="Image: IMG_0746.jpg (37.97 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948690135279611944" id="message-948690135279611944" title="Message sent: 03-Mar-22 05:15 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0754-6FF55.jpg">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/IMG_0754-6FF55.jpg" alt="Image attachment" title="Image: IMG_0754.jpg (113.65 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-22 05:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="948690144016343050" id="message-948690144016343050" title="Message sent: 03-Mar-22 05:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Im gonna commit suicide again</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-22 05:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="948690165973544980" id="message-948690165973544980" title="Message sent: 03-Mar-22 05:16 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/cursed_memes_my_friend_has_sent_me_2_by_pr-B31D8.jpg">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/cursed_memes_my_friend_has_sent_me_2_by_pr-B31D8.jpg" alt="Image attachment" title="Image: cursed_memes_my_friend_has_sent_me_2_by_pr3c10us_de4fvpm-fullview.jpg (16.35 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948690191189676062" id="message-948690191189676062" title="Message sent: 03-Mar-22 05:16 AM">
+
+                    <div class="chatlog__attachment chatlog__attachment--hidden" onclick="showSpoiler(event, this)">
+                            <div class="chatlog__attachment-spoiler-caption">SPOILER</div>
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/SPOILER_RDT_20220131_224700372238705003610-F9B62.png">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/SPOILER_RDT_20220131_224700372238705003610-F9B62.png" alt="Image attachment" title="Image: SPOILER_RDT_20220131_2247003722387050036101316.png (923.79 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948690213411127436" id="message-948690213411127436" title="Message sent: 03-Mar-22 05:16 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/RDT_20220202_0749408280969237694647588-8895A.jpg">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/RDT_20220202_0749408280969237694647588-8895A.jpg" alt="Image attachment" title="Image: RDT_20220202_0749408280969237694647588.jpg (29.36 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="liso90#4584" style="color: rgb(215,52,42)">aspho</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;948690144016343050&#39;)">
+Im gonna commit suicide again                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-22 05:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="948690243018715197" id="message-948690243018715197" title="Message sent: 03-Mar-22 05:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">On real life</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-22 05:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="948690339131187320" id="message-948690339131187320" title="Message sent: 03-Mar-22 05:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">That’s what you get blue helmet</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948690495125733426" id="message-948690495125733426" title="Message sent: 03-Mar-22 05:17 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/1AC248DF-6A2B-4FA7-BCB2-6A3ED4B68537-40946.jpg">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/1AC248DF-6A2B-4FA7-BCB2-6A3ED4B68537-40946.jpg" alt="Image attachment" title="Image: 1AC248DF-6A2B-4FA7-BCB2-6A3ED4B68537.jpg (1.07 MB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948690637350383706" id="message-948690637350383706" title="Message sent: 03-Mar-22 05:17 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/8BD56376-8350-479E-97AD-6B915C9F9F61-B2EE6.jpg">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/8BD56376-8350-479E-97AD-6B915C9F9F61-B2EE6.jpg" alt="Image attachment" title="Image: 8BD56376-8350-479E-97AD-6B915C9F9F61.jpg (1.13 MB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-22 05:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="948690979291009044" id="message-948690979291009044" title="Message sent: 03-Mar-22 05:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ugh</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948691013596225546" id="message-948691013596225546" title="Message sent: 03-Mar-22 05:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Time to die</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-22 05:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="948691095401926706" id="message-948691095401926706" title="Message sent: 03-Mar-22 05:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Do a flip!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-22 05:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="948691236447993926" id="message-948691236447993926" title="Message sent: 03-Mar-22 05:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Okeh</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/7f67501b5e3395530c6c022c1adabad2-7E284.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="EngineerHans#5032" data-user-id="759981751727816704" style="color: rgb(118,69,141)">EngineerHans</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-22 05:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="948691659154141194" id="message-948691659154141194" title="Message sent: 03-Mar-22 05:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">AHHHH ow</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948691689122447470" id="message-948691689122447470" title="Message sent: 03-Mar-22 05:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">My tank was of the killed</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948691716079235143" id="message-948691716079235143" title="Message sent: 03-Mar-22 05:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji emoji--large" alt="pepe" title="pepe" src="https://cdn.discordapp.com/emojis/941607459586474014.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="Creg#3608" style="color: rgb(228,180,0)">Creg worshipper</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;948690495125733426&#39;)">
+                            <em>Click to see attachment</em> <span>🖼️</span>
+                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/7f67501b5e3395530c6c022c1adabad2-7E284.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="EngineerHans#5032" data-user-id="759981751727816704" style="color: rgb(118,69,141)">EngineerHans</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-22 05:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="948692445418377266" id="message-948692445418377266" title="Message sent: 03-Mar-22 05:25 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/subnautica-death-DD79F.gif">
+                                <img class="chatlog__attachment-media" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/subnautica-death-DD79F.gif" alt="Image attachment" title="Image: subnautica-death.gif (6.37 MB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="Creg#3608" style="color: rgb(228,180,0)">Creg worshipper</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;948690495125733426&#39;)">
+                            <em>Click to see attachment</em> <span>🖼️</span>
+                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-22 05:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="948693361471139911" id="message-948693361471139911" title="Message sent: 03-Mar-22 05:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It’s called a bobbit worm, it rips fish to shreds</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/7f67501b5e3395530c6c022c1adabad2-7E284.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="EngineerHans#5032" data-user-id="759981751727816704" style="color: rgb(118,69,141)">EngineerHans</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-22 05:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="948693613393625129" id="message-948693613393625129" title="Message sent: 03-Mar-22 05:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">No sh!t sherlock</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948693642405625937" id="message-948693642405625937" title="Message sent: 03-Mar-22 05:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I know what that thing is</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948693665809842226" id="message-948693665809842226" title="Message sent: 03-Mar-22 05:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">They hide in the sand</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948693681253273600" id="message-948693681253273600" title="Message sent: 03-Mar-22 05:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">And once</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/328b31d169a0a55b94ad143afc999df4-AB20E.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Alpus#9287" data-user-id="789121666604859424" style="color: rgb(7,18,34)">Alpaito</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-22 05:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="948693722541998091" id="message-948693722541998091" title="Message sent: 03-Mar-22 05:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Im here</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948693793614475364" id="message-948693793614475364" title="Message sent: 03-Mar-22 05:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Saved</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/5345b1a181159d175acb005a10f63399-3D05C.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="With Blue Horns#2137" data-user-id="630012869445943306" style="color: rgb(228,180,0)">With Blue Horns</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-22 06:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="948703997936689223" id="message-948703997936689223" title="Message sent: 03-Mar-22 06:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">is this the legendary basement where is nirvana</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-22 07:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="948729734626430996" id="message-948729734626430996" title="Message sent: 03-Mar-22 07:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">This is my basement</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948729800271470643" id="message-948729800271470643" title="Message sent: 03-Mar-22 07:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I live here</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="948729833427443722" id="message-948729833427443722" title="Message sent: 03-Mar-22 07:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Its my house</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="liso90#4584" style="color: rgb(215,52,42)">aspho</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;948729734626430996&#39;)">
+This is my basement                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/6d6889ec3d8a0736028df9960a67cf87-87BCA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="liso90#4584" data-user-id="930632405906235433" style="color: rgb(215,52,42)">aspho</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-22 07:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="948730067524141138" id="message-948730067524141138" title="Message sent: 03-Mar-22 07:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Actualy its from warboi and creg)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Scavenger%20Clan%20droneboi%20-%20Warfare%20-%20basement%20%5B948320159850987573%5D.html_Files/ac6c0fc58eea4800663048b42d5f701b-F8C12.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Creg#3608" data-user-id="577907976510242839" style="color: rgb(228,180,0)">Creg worshipper</span>
+
+
+        <span class="chatlog__timestamp">05-Mar-22 02:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="949379431900790825" id="message-949379431900790825" title="Message sent: 05-Mar-22 02:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Homosexuality is gay</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 115 message(s)</div>
+</div>
+
+</body>
+
+</html>
